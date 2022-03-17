@@ -17,7 +17,6 @@
 #' @param distance A string specifying the distance calculation used when constructing blockettes.  See \code{blockTools::block}
 #' for more options and information.
 #'
-#'
 #' @return Returns a list of three elements:
 #'
 #'

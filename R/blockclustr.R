@@ -19,7 +19,6 @@
 #'
 #' @return Returns a list of three elements:
 #'
-#'
 #' \itemize{
 #' \item{\code{design}}{ a dataframe containing information about units
 #' included in the experimental design}

@@ -54,7 +54,7 @@ functionality, I’ll simulate for variables for 100 participants:
 <!-- end list -->
 
 ``` r
-set.seed(7127)
+set.seed(123)
 N <- 100
 df <- data.frame(id = stringi::stri_rand_strings(N, 10),
                  pid = sample(c("R", "D"),
@@ -84,14 +84,16 @@ has two clusters, each cluster has two units, and each cluster within a
 block is assigned to a different experimental condition.
 
 ``` r
-head(twoarm$design)
-#>           id block_id cluster_id pid       inc age  Z
-#> 1 OnJXFchqc8        1          1   R 44948.549  67 Z1
-#> 2 Vd6mM9J8xQ        1          1   R 20273.623  61 Z1
-#> 3 rEUc89OylA        1          2   D 44260.593  66 Z2
-#> 4 43lmpOAKY0        1          2   R 20807.236  61 Z2
-#> 5 Oxlp9wq7Fz        2          3   R  4337.587  82 Z2
-#> 6 37KVqxdSeb        2          3   D 28427.700  69 Z2
+head(twoarm$design, n = 8)
+#>           id block_id cluster_id pid        inc age  Z
+#> 1 Y9x2Nxe3PQ        1          1   D   2881.875  78 Z1
+#> 2 EgEJAn9pKN        1          1   D  65844.805  31 Z1
+#> 3 qI9h62z2Ku        1          2   D 134261.317  49 Z2
+#> 4 m0mjdT90SU        1          2   D  67916.095  27 Z2
+#> 5 dBrkfcNWsa        2          3   R  62859.767  57 Z2
+#> 6 XdaJtcIO9r        2          3   R  11484.625  73 Z2
+#> 7 ctfjWeomyR        2          4   R  60805.065  58 Z1
+#> 8 l8OD3O4E3f        2          4   R   8293.954  76 Z1
 ```
 
 ### Increasing experimental conditions and cluster size
@@ -106,14 +108,24 @@ multiarm <- blockclustr(data = df,
                         id_var = "id",
                         block_vars = c("age", "inc"))
 
-head(multiarm$design)
-#>           id block_id cluster_id pid       inc age  Z
-#> 1 ANb3EXJCI6        1          1   R  5642.655  44 Z1
-#> 2 Rl5eW1F3f5        1          1   R 18054.641  32 Z1
-#> 3 cQhAZh2UO2        1          1   R 74939.915  40 Z1
-#> 4 shScMMgB2H        1          1   D 53864.411  36 Z1
-#> 5 doInMAkWys        1          2   D  1883.210  44 Z2
-#> 6 JICg8wcglx        1          2   D  5992.299  25 Z2
+head(multiarm$design, n = 16)
+#>            id block_id cluster_id pid       inc age  Z
+#> 1  z8uZORh5Lg        1          1   R 74054.912  85 Z1
+#> 2  kdi0TDNbL6        1          1   D 22233.430  68 Z1
+#> 3  s04AljyS4e        1          1   R 52950.177  20 Z1
+#> 4  5oQkfRc0Dh        1          1   D 33137.969  84 Z1
+#> 5  antN5ck5Ic        1          2   D 76985.168  84 Z3
+#> 6  yUOP5APLPI        1          2   R 21827.707  65 Z3
+#> 7  wgRo2jLpXH        1          2   R 37606.597  19 Z3
+#> 8  KCZtWafWV1        1          2   R 36170.025  85 Z3
+#> 9  cQX3GOCp9n        1          3   R 86517.102  82 Z2
+#> 10 1W5HQaoCSR        1          3   R 15744.352  65 Z2
+#> 11 vXDUnP6HMG        1          3   D 73397.865  19 Z2
+#> 12 W3y75sVKt1        1          3   D 29649.449  84 Z2
+#> 13 f5NHoRoonR        2          4   R 20218.827  51 Z3
+#> 14 l8OD3O4E3f        2          4   R  8293.954  76 Z3
+#> 15 QLrSXxmCJy        2          4   R 58038.195  49 Z3
+#> 16 TFDf2hLPou        2          4   R 29838.935  74 Z3
 ```
 
 ### Including a cluster constraint
@@ -138,12 +150,30 @@ multiarm_cons <- blockclustr(data = df,
                              constraint_list = list(c("R", "R", "R", "D"),
                                                     c("D", "D", "D", "R")))
 
-head(multiarm_cons$design)
-#>           id block_id cluster_id pid       inc age  Z
-#> 1 8Xyrr1KyhJ        1          1   D  88697.23  56 Z1
-#> 2 Vd6mM9J8xQ        1          1   R  20273.62  61 Z1
-#> 3 xjmn1Xo6iu        1          1   R  54017.56  48 Z1
-#> 4 NunxvKsCti        1          1   R  39896.66  57 Z1
-#> 5 fYYxr2VBgn        1          2   D 141820.79  36 Z3
-#> 6 rlGrRl5MKD        1          2   R  29056.71  62 Z3
+head(multiarm_cons$design, n = 24)
+#>            id block_id cluster_id pid       inc age  Z
+#> 1  n5pHkx5qnN        1          1   D  20281.71  19 Z3
+#> 2  ExbVOsMHAA        1          1   R  50831.46  67 Z3
+#> 3  s04AljyS4e        1          1   R  52950.18  20 Z3
+#> 4  alNlXuBH5D        1          1   R  94676.68  67 Z3
+#> 5  xjb7YGt0E8        1          2   D  25257.80  19 Z1
+#> 6  qUOF6OZDRD        1          2   R  51185.93  66 Z1
+#> 7  2Rn7YC7ktN        1          2   R  61917.92  21 Z1
+#> 8  I64skoy66n        1          2   R 108593.34  80 Z1
+#> 9  vsfwWZKL1V        1          3   D  31882.77  31 Z2
+#> 10 0lSifZheH6        1          3   R  57987.96  65 Z2
+#> 11 wgRo2jLpXH        1          3   R  37606.60  19 Z2
+#> 12 lqSj6DxkoP        1          3   R 145591.74  81 Z2
+#> 13 eJJDMz958g        2          4   D  32659.02  36 Z2
+#> 14 FfPm6QztsA        2          4   D  32963.89  69 Z2
+#> 15 gJbzk4R3Lj        2          4   R  23154.10  31 Z2
+#> 16 OSi3LnpELr        2          4   D  26899.80  50 Z2
+#> 17 qn7iE4w9eA        2          5   D  39281.09  33 Z1
+#> 18 2vlCeeOoXs        2          5   D  32475.95  69 Z1
+#> 19 VLeNMXjDPG        2          5   R  13774.40  26 Z1
+#> 20 kuTZjru3VL        2          5   D  26869.65  49 Z1
+#> 21 YuaQwhP1ZU        2          6   D  49124.04  39 Z3
+#> 22 JP0BqEE4Fj        2          6   D  32897.46  67 Z3
+#> 23 uofo7FKPdo        2          6   R  36653.61  46 Z3
+#> 24 qG1rKdXNBQ        2          6   D  30297.37  47 Z3
 ```

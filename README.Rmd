@@ -52,7 +52,7 @@ Constructing an experimental design with `blockclustr` requires pre-treatment co
 4. `age` a numeric indicating age
 
 ```{r}
-set.seed(7127)
+set.seed(123)
 N <- 100
 df <- data.frame(id = stringi::stri_rand_strings(N, 10),
                  pid = sample(c("R", "D"),
@@ -78,7 +78,7 @@ twoarm <- blockclustr(data = df,
 By looking at the first few rows of the design, we can see each block has two clusters, each cluster has two units, and each cluster within a block is assigned to a different experimental condition.
 
 ```{r}
-head(twoarm$design)
+head(twoarm$design, n = 8)
 ```
 
 
@@ -93,7 +93,7 @@ multiarm <- blockclustr(data = df,
                         id_var = "id",
                         block_vars = c("age", "inc"))
 
-head(multiarm$design)
+head(multiarm$design, n = 16)
 ```
 
 
@@ -113,5 +113,5 @@ multiarm_cons <- blockclustr(data = df,
                              constraint_list = list(c("R", "R", "R", "D"),
                                                     c("D", "D", "D", "R")))
 
-head(multiarm_cons$design)
+head(multiarm_cons$design, n = 24)
 ```

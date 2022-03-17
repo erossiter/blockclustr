@@ -198,7 +198,7 @@ blockclustr <- function(data,
   block_clust_df <- plyr::join(block_clust_df, data, by = id_var, type = "left")
 
   # Assign treatment
-  block_clust_df$Z <- block_and_cluster_ra(blocks = block_clust_df$block_id,
+  block_clust_df$Z <- randomizr::block_and_cluster_ra(blocks = block_clust_df$block_id,
                                            clusters = block_clust_df$cluster_id,
                                            conditions = paste0("Z", 1:n_tr),
                                            num_arms = n_tr)

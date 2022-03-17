@@ -1,0 +1,23 @@
+Package: blockclustr
+Title: Performs block cluster randomization when units also need to be clustered
+Version: 0.1.0.0
+Authors@R: 
+    person(given = "Erin",
+           family = "Rossiter",
+           role = c("aut", "cre"),
+           email = "erossite@nd.edu",
+           comment = c(ORCID = "0000-0003-4446-4272"))
+Description: blockclustr performs block cluster randomization when units also need to be clustered, for example, when researchers are conducting experiments involving social interaction amongst participants who aren't naturally clustered into groups.
+License: MIT + file LICENSE
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.1
+Imports:
+    plyr,
+    blockTools
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3
+Depends: 
+    R (>= 2.10)
